@@ -8,32 +8,55 @@
 
 
 //Chiedo all'utente di scegliere pari o dispari e un numero da 1 a 5
-const evenOrOdd = prompt ('Scegli Pari o Dispari!');
-const userNumber = parseInt (prompt ('Dimmi un numero'));
-let sum = sumTwoNumbers(userNumber, getRndInteger(1, 5));
+const userEvenOrOdd = prompt ('Scegli Pari o Dispari!');
+const userNumber = parseInt (prompt ('Dimmi un numero da 1 a 5'));
+console.log(userEvenOrOdd);
 console.log(userNumber);
 
-//Si genera un numero random in una funzione
+// Generare un numero random per il computer da 1 a 5 (funzione)
+const computerNumber = getRndInteger(1, 5);
+console.log(computerNumber);
+
+// Sommo numero utente e numero computer
+const sum = userNumber + computerNumber;
+console.log('Somma', sum);
+
+// Stabilisco se la somma è pari o dispari con una funzione
+const isSumEvenOrOdd = isNumberEvenOrOdd(sum);
+console.log('Somma pari dispari:', isSumEvenOrOdd);
+    
+// Se la scelta dell'utente === risultato, l'utente ha vinto, altrimenti ha perso
+if(userEvenOrOdd === isSumEvenOrOdd) {
+    alert('You Win!!');
+
+} else {
+    alert('You Lost...');
+}
+
+
+// ----------------------
+// FUNCTIONS
+// ----------------------
+
+// Funzione che stabilisce se un numero è pari o dispari
+// number è il numero da valutare
+// return: stringa, 'pari' se number è pari altrimenti 'dispari'
+function isNumberEvenOrOdd(number) {
+    let result;
+
+    if(number % 2 === 0) {
+        result = 'pari';
+    } else {
+        result = 'dispari';
+    }
+
+    return result;
+}
+
+// Funzione che genera numeri random con estremi compresi
 function getRndInteger(min, max) {
 
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//Sommo i numeri
-function sumTwoNumbers (num1, num2) {
-
-    const sumNumbers = num1 + num2;
-    console.log(sumNumbers);
-    return sumNumbers;
-
-    //Verifico se il numero è pari o dispari
-    //E dichiaro il vincitore
-    if (sumNumbers % 2 === 0) {
-        alert ('Even Win!!');
-    
-    }else {
-        alert ('Odd Win!!');
-    }
-
-}
 
